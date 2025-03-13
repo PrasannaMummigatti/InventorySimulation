@@ -58,6 +58,6 @@ def update(frame):
     return demand_line, inventory_line
 
 # Create animation
-ani = animation.FuncAnimation(fig, update, frames=num_periods, interval=200, blit=True)
+ani = animation.FuncAnimation(fig, update, frames=num_periods, interval=200, blit=True,repeat=False)
 
 plt.show()
