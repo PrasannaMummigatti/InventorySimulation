@@ -7,7 +7,7 @@ simulation_days = 100  # Total days to simulate
 s = 20  # Reorder point
 S = 80  # Order-up-to level
 lead_time = 3  # Lead time in days
-initial_inventory = 0  # Starting inventory
+initial_inventory = 20  # Starting inventory
 
 # Poisson Demand Parameters
 lambda_demand = 5  # Average demand per day
@@ -67,6 +67,7 @@ axes[1].set_xlabel("Days")
 axes[1].set_ylabel("Inventory Level")
 axes[1].set_title("Inventory Level Over Time (Stepwise)")
 axes[1].legend()
+axes[1].set_facecolor('lightgrey')
 axes[1].grid(True)
 
 plt.tight_layout()
