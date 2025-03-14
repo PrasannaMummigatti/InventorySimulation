@@ -43,7 +43,7 @@ for t in range(T):
     inventory_levels.append(inventory)
 
 # Create subplots
-fig, ax = plt.subplots(2, 1, figsize=(12, 6), sharex=True, gridspec_kw={'height_ratios': [1, 2]})
+fig, ax = plt.subplots(2, 1, figsize=(8, 5), sharex=True, gridspec_kw={'height_ratios': [1, 2]})
 
 # Plot demand (line chart)
 #ax[0].plot(range(T), demand_history, marker='', linestyle='-', color='gray', label="Demand")

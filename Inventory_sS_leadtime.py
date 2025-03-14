@@ -49,10 +49,11 @@ for day in range(simulation_days):
     inventory_levels.append(inventory)
 
 # Plot results with subplots
-fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(12, 8), sharex=True)
+fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(8, 5), sharex=True)
 
 # Demand Plot (Poisson demand)
-axes[0].plot(demand_history, color='blue', marker='o', linestyle='-', label="Daily Demand")
+#axes[0].plot(demand_history, color='blue', marker='o', linestyle='-', label="Daily Demand")
+axes[0].bar(range(simulation_days), demand_history, color='lightblue', alpha=0.7, label="Daily Demand")
 axes[0].set_ylabel("Demand")
 axes[0].set_title("Daily Demand Over Time (Poisson)")
 axes[0].legend()

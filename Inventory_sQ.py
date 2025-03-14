@@ -9,7 +9,7 @@ Q = 80  # Order quantity
 num_periods = 100  # Number of time periods
 
 # Generate random demand
-np.random.seed(0)  # For reproducibility
+np.random.seed(20)  # For reproducibility
 demand = np.random.poisson(lam=3, size=num_periods)  # Poisson-distributed demand
 
 # Initialize inventory tracking
@@ -25,21 +25,20 @@ for t in range(1, num_periods):
         inventory[t] += Q
 
 # Setup figure for animation
-fig, ax = plt.subplots(2, 1, figsize=(7, 7))
+fig, ax = plt.subplots(2, 1, figsize=(8, 5), sharex=True)
 
-# Demand Plot
+# Demand Plot (Bar Chart)
 ax[0].set_xlim(0, num_periods)
 ax[0].set_ylim(0, max(demand) + 2)
 ax[0].set_title('Demand over Time')
-#ax[0].set_xlabel('Time Period')
 ax[0].set_ylabel('Demand')
 ax[0].grid(True)
-demand_line, = ax[0].plot([], [], 'b-', label="Demand")
+bars = ax[0].bar(range(num_periods), np.zeros(num_periods), color='lightblue', alpha=0.7, label="Demand")
 ax[0].legend()
 
-# Inventory Plot
+# Inventory Plot (Step Chart)
 ax[1].set_xlim(0, num_periods)
-ax[1].set_ylim(0, max(inventory) + 5)
+ax[1].set_ylim(0, max(inventory) + 10)
 ax[1].set_title('(s, Q) Inventory Policy Simulation')
 ax[1].set_xlabel('Time Period')
 ax[1].set_ylabel('Inventory Level')
@@ -51,14 +50,16 @@ ax[1].legend()
 
 # Animation update function
 def update(frame):
-    demand_line.set_data(np.arange(frame), demand[:frame])
+    # Update demand bars
+    for i in range(frame):
+        bars[i].set_height(demand[i])  # Set bar height
     
     # Update inventory step plot
     inventory_line.set_data(np.arange(frame), inventory[:frame])
     
-    return demand_line, inventory_line
+    return bars, inventory_line
 
 # Create animation
-ani = animation.FuncAnimation(fig, update, frames=num_periods, interval=200, blit=True,repeat=False)
+ani = animation.FuncAnimation(fig, update, frames=num_periods, interval=200, blit=False, repeat=False)
 
 plt.show()
