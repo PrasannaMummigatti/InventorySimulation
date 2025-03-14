@@ -6,11 +6,11 @@ from regex import F
 # Simulation parameters
 np.random.seed(42)  # For reproducibility
 num_periods = 100  # Number of time periods
-s = 4  # Reorder point
-S = 40  # Order-up-to level
-initial_inventory = 2  # Starting inventory
-lambda_demand =5   # Mean demand per period (Poisson)
-
+s = 10  # Reorder point
+S = 150  # Order-up-to level
+initial_inventory = 0  # Starting inventory
+lambda_demand =20   # Mean demand per period (Poisson)
+OrderCount = 0
 # Arrays to store results
 demand = np.random.poisson(lambda_demand, num_periods)
 inventory = np.zeros(num_periods)
@@ -25,9 +25,12 @@ for t in range(num_periods):
     
     # Apply demand
     current_inventory = max(0, current_inventory - demand[t])
-    
+    #current_inventory =  current_inventory - demand[t]
     # Check if an order is needed
+
     if current_inventory <= s:
+        OrderCount = OrderCount + 1
+        # Place order to reach order-up-to level
         order_quantity = S - current_inventory
         orders[t] = order_quantity
         current_inventory = S  # Restock inventory
@@ -46,11 +49,12 @@ axes[0].grid()
 
 line_inventory, = axes[1].step([], [], where='post', linestyle='-', color='g', label='Inventory Level')
 axes[1].set_xlim(0, num_periods)
-axes[1].set_ylim(0, max(inventory) + 5)
+axes[1].set_ylim(-10, max(inventory) + 5)
 axes[1].axhline(y=s, color='r', linestyle='--', label='s (Reorder Point)')
 axes[1].axhline(y=S, color='b', linestyle='--', label='S (Order-up-to Level)')
 axes[1].set_ylabel('Inventory')
 axes[1].set_title('Inventory Level Over Time')
+axes[1].text(10,20,OrderCount)
 axes[1].legend()
 axes[1].grid()
 
