@@ -52,7 +52,7 @@ axes[1].set_ylim(-10, max(inventory) + 10)
 axes[1].axhline(y=s, color='r', linestyle='--', label='s (Reorder Point)')
 axes[1].axhline(y=S, color='b', linestyle='--', label='S (Order-up-to Level)')
 axes[1].set_ylabel('Inventory')
-axes[1].set_title('Inventory Level Over Time, LeadTime=0')
+axes[1].set_title('Inventory (s,S) Level Over Time, LeadTime=0')
 axes[1].legend()
 axes[1].grid(axis='y')
 
@@ -76,4 +76,12 @@ def update(frame):
 # Create animation
 ani = animation.FuncAnimation(fig, update, frames=num_periods, interval=100, blit=False, repeat=False)
 
+manager = plt.get_current_fig_manager()
+try:
+    manager.window.wm_geometry("+100+100")  # For TkAgg backend
+except AttributeError:
+    manager.window.move(100, 100)  # For Qt5Agg backend
+
 plt.show()
+
+#plt.show()
