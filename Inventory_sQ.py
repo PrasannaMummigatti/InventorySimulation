@@ -65,7 +65,4 @@ def update(frame):
 
 # Create animation
 ani = animation.FuncAnimation(fig, update, frames=num_periods, interval=10, blit=False, repeat=True)
-
-
-
 plt.show()
