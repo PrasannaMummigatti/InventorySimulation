@@ -67,13 +67,5 @@ def update(frame):
 ani = animation.FuncAnimation(fig, update, frames=num_periods, interval=10, blit=False, repeat=True)
 
 
-manager = plt.get_current_fig_manager()
-try:
-    manager.window.wm_geometry("+100+100")  # For TkAgg backend
-except AttributeError:
-    manager.window.move(100, 100)  # For Qt5Agg backend
-plt.text(88, 115, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
-plt.text(88, 0, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
-plt.show()
 
-#plt.show()
+plt.show()
