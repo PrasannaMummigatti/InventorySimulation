@@ -64,12 +64,22 @@ axes[1].plot(inventory_levels, label="Inventory Level", marker="", linestyle="-"
 axes[1].scatter(orders_placed, [s] * len(orders_placed), color='red', label="Order Placed", marker="x")
 axes[1].axhline(y=s, color='r', linestyle='--', label="Reorder Point (s)")
 axes[1].axhline(y=S, color='g', linestyle='--', label="Max Inventory (S)")
-axes[1].set_xlabel("Days")
+axes[1].set_xlabel("Time Period")
 axes[1].set_ylabel("Inventory Level")
-axes[1].set_title("Inventory Level Over Time (Stepwise)")
+axes[1].set_title("Inventory Level Over Time, LeadTime=3")
 axes[1].legend()
 axes[1].set_facecolor('lightgrey')
 axes[1].grid(True)
 
 plt.tight_layout()
+
+manager = plt.get_current_fig_manager()
+try:
+    manager.window.wm_geometry("+100+100")  # For TkAgg backend
+except AttributeError:
+    manager.window.move(100, 100)  # For Qt5Agg backend
+plt.text(88, 115, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
+plt.text(88, 0, 'PrasannaMummigatti',style='italic', fontsize=5,color='blue')
+#plt.show()
+
 plt.show()

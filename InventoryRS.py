@@ -49,7 +49,7 @@ fig, ax = plt.subplots(2, 1, figsize=(8, 5), sharex=True, gridspec_kw={'height_r
 #ax[0].plot(range(T), demand_history, marker='', linestyle='-', color='gray', label="Demand")
 ax[0].bar(range(T), demand_history, color='lightblue', alpha=0.7, label="Demand")
 ax[0].set_ylabel("Demand")
-ax[0].set_title("Poisson Demand over Time")
+ax[0].set_title("Demand over Time")
 ax[0].set_ylim(0, max(demand_history) + 5)  # Start Y-axis from zero
 ax[0].legend()
 ax[0].grid()
@@ -69,7 +69,7 @@ if reorder_points:
 
 ax[1].set_xlabel("Time Period")
 ax[1].set_ylabel("Inventory Level")
-ax[1].set_title("(R,S) Inventory Policy Simulation with Poisson Demand")
+ax[1].set_title("(R,S) Inventory Policy Simulation with LeadTime=2")
 ax[1].set_facecolor('lightgrey')
 ax[1].set_ylim(0, S + 10)  # Start Y-axis from zero
 ax[1].legend()
