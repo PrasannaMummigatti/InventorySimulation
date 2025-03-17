@@ -1,6 +1,3 @@
-from tkinter import font
-from turtle import color
-from click import style
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
